@@ -37,6 +37,19 @@ namespace Algorhitms
             Console.WriteLine(CheckArray(new[] {10, 20, 30, 40, 50 }));
             Console.WriteLine(CheckArray(new[] { 10, 20, 40, 10 }));
             Console.WriteLine(CheckArray(new[] { 20, 40, 50, 60, 70 }));
+
+            Console.WriteLine(CheckTwoArrays(new[] { 10, 20, 40, 50 }, new[] { 10, 20, 40, 50 }));
+            Console.WriteLine(CheckTwoArrays(new[] { 10, 20, 40, 50 }, new[] { 1, 20, 40, 5 }));
+
+
+            Console.WriteLine(ArraySum(new[] { 10, 20, 30, 40, 50 }));
+
+            Console.WriteLine("Reversed array: " + ReverseArrayToString(new[] { 10, 20, -30, -40 }));
+
+            Console.WriteLine(CheckArrayDoubles(new int[] {10, 10 }));
+            Console.WriteLine(CheckArrayDoubles(new int[] { 20, 20 }));
+            Console.WriteLine(CheckArrayDoubles(new int[] { 20, 10 }));
+            Console.WriteLine(CheckArrayDoubles(new int[] { 5, 11 }));
         }
 
         private static int CheckNumbers(int a, int b)
@@ -187,7 +200,72 @@ namespace Algorhitms
             //NO 89
             //Write a C# Sharp program to check a given array of integers of length 1 or more and
             //return true if the first element and the last element are equal in the given array.
-            return (a[0] == 10 || a[a.Length - 1] == 10) ? true : false;
+            return a[0] == 10 || a[a.Length - 1] == 10;
+        }
+
+        private static bool CheckTwoArrays(int[] a, int[] b) 
+        {
+            //NO 90
+            //Write a C# Sharp program to check two given arrays of integers of length 1
+            //or more and return true if they have the same first element or they have the same last element.
+
+            return a[0] == b[0] || a[a.Length - 1] == b[a.Length - 1];
+        }
+
+        private static int ArraySum(int[] a) 
+        {
+            //NO 91
+            //Write a C# Sharp program to compute the sum of the elements of an given array of integers.
+
+            //Solution with Array method if .net version > 3.5
+            //return a.Sum();
+
+            int sum = 0;
+            for (int i = 0; i <= a.Length-1; i++)
+            {
+                sum += a[i];
+            }
+            return sum;
+    
+        }
+
+        private static string ReverseArrayToString(int[] a) 
+        {
+            //NO 92
+            //Write a C# Sharp program to reverse the elements of a given array of integers (length 4 ) in left direction and return the new array. 
+
+            //Solution with Array method if .net version > 3.5
+            //return a.Reverse().ToString();
+
+            var array = ReverseArray(a);
+            string s = String.Empty;
+
+            foreach (var item in array)
+            {
+                s += item.ToString() + " ";
+            }
+            return s;
+        }
+
+        private static int[] ReverseArray(int[] a) 
+        {
+
+
+            int[] b = new int[a.Length];
+
+            for (int i = a.Length - 1, y = 0; i >= 0; i--, y++)
+            {
+                b[y] = a[i];
+            }
+            return b;
+        }
+
+        private static bool CheckArrayDoubles(int[] a)
+        {
+            //NO 100
+            //Write a C# Sharp program to check a given array of integers and return true if the array contains 10 or 20 twice.
+            //The length of the array will be 0, 1, or 2.
+            return a.Length == 2 && (a[0] == 10 && a[1] == 10 || a[0] == 20 && a[1] == 20);
         }
     }
 }
